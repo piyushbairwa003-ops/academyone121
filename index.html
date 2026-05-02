@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden;
+  }
+
+  .screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* BG */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://academylinkx.site/wp-content/uploads/2026/04/download-2.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.42) saturate(1.5);
+    z-index: 0;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.6) 0%,
+      rgba(0,0,0,0.2) 45%,
+      rgba(0,0,0,0.7) 100%
+    );
+    z-index: 1;
+  }
+  .cyan-line {
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 110%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00f5ff 30%, #00f5ff 70%, transparent);
+    opacity: 0.5;
+    box-shadow: 0 0 20px 4px #00f5ffaa;
+    transform: rotate(-1.5deg);
+    z-index: 2;
+  }
+
+  /* CARD — desktop centering */
+  .card {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    max-width: 520px;
+    padding: 0 24px;
+  }
+
+  /* LOGO */
+  .logo-wrap {
+    position: relative;
+    width: 118px;
+    height: 118px;
+    margin-bottom: 14px;
+    flex-shrink: 0;
+  }
+  .logo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 22px 6px #FFD70077;
+    z-index: 2;
+    animation: ringPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes ringPulse {
+    0%,100% { box-shadow: 0 0 22px 6px #FFD70066; }
+    50%      { box-shadow: 0 0 32px 10px #FFD700aa; }
+  }
+  .logo-wrap img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    border: 2px solid #000;
+  }
+
+  /* FIRE LINE */
+  .fire-row {
+    text-align: center;
+    color: #FFD700;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    text-shadow: 0 0 14px #FFD70099;
+    line-height: 1.35;
+    margin-bottom: 12px;
+    font-size: clamp(.8rem, 2.2vw, 1.05rem);
+  }
+  .fire-row .name {
+    font-size: clamp(1.1rem, 3.2vw, 1.5rem);
+    letter-spacing: .08em;
+  }
+
+  /* TELEGRAM BUTTON */
+  .tg-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    background: linear-gradient(135deg, #1AABDB 0%, #0369A1 100%);
+    border-radius: 50px;
+    padding: 15px 24px;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(.85rem, 2.2vw, 1.05rem);
+    letter-spacing: .12em;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+    animation: btnGlow 2.5s ease-in-out infinite;
+  }
+  @keyframes btnGlow {
+    0%,100% { box-shadow: 0 4px 24px rgba(26,171,219,.55); }
+    50%      { box-shadow: 0 4px 40px rgba(26,171,219,.9); }
+  }
+  .tg-btn::after {
+    content:'';
+    position:absolute;
+    top:-50%;left:-60%;
+    width:35%;height:200%;
+    background:rgba(255,255,255,.22);
+    transform:skewX(-20deg);
+    animation:shine 3s ease-in-out infinite;
+  }
+  @keyframes shine { 0%{left:-60%} 60%,100%{left:130%} }
+
+  /* INSTRUMENTS */
+  .instruments {
+    font-size: clamp(.75rem, 1.8vw, .92rem);
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  /* WHITE BADGE */
+  .best-badge {
+    background: #fff;
+    border-radius: 7px;
+    padding: 7px 28px;
+    margin-bottom: 11px;
+  }
+  .best-badge span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(.72rem, 1.8vw, .9rem);
+    color: #e01010;
+    letter-spacing: .04em;
+  }
+
+  /* FEATURE LINES */
+  .feat {
+    font-size: clamp(.72rem, 1.7vw, .87rem);
+    font-weight: 600;
+    color: #e5e5e5;
+    letter-spacing: .04em;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* CREDIT BAR */
+  .credit-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+    border-radius: 40px;
+    padding: 8px 24px;
+    width: 100%;
+    max-width: 340px;
+    margin-top: 13px;
+    font-size: clamp(.64rem, 1.6vw, .78rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .05em;
+  }
+  .credit-bar a {
+    color: #7dd3fc;
+    text-decoration: none;
+    font-weight: 900;
+  }
+
+  /* ── MOBILE  (≤ 480px) ── */
+  @media (max-width: 480px) {
+    .logo-wrap { width: 100px; height: 100px; margin-bottom: 10px; }
+    .tg-btn   { padding: 13px 20px; margin-bottom: 11px; }
+    .best-badge { padding: 6px 18px; margin-bottom: 9px; }
+    .credit-bar { margin-top: 10px; }
+    .card { gap: 0; }
+  }
+
+  /* ── DESKTOP  (≥ 900px) ── */
+  @media (min-width: 900px) {
+    .card { max-width: 600px; }
+    .logo-wrap { width: 140px; height: 140px; margin-bottom: 18px; }
+    .tg-btn { padding: 18px 32px; margin-bottom: 18px; }
+    .best-badge { padding: 10px 36px; margin-bottom: 14px; }
+    .feat { line-height: 2; }
+    .credit-bar { margin-top: 18px; padding: 10px 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="cyan-line"></div>
+
+  <div class="card">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img src="https://fantasticczone.site/wp-content/uploads/2026/05/shaaddi.jpg" alt="Mehta">
+    </div>
+
+    <!-- Headline -->
+    <div class="fire-row">
+      💥 DAILY FREE DEMO CALL 💥<br>
+      <span class="name">✦ Shadi tradiing
+ ✦</span>
+    </div>
+
+    <!-- CTA -->
+    <a class="tg-btn" href="https://t.me/+q47F3XSHOk5lODU1" target="_blank">
+      ✈️ &nbsp;JOIN ON TELEGRAM
+    </a>
+
+    <!-- Instruments -->
+    <div class="instruments">NIFTY &nbsp;•&nbsp; BANKNIFTY &nbsp;•&nbsp; STOCK OPTIONS ⚡</div>
+
+    <!-- White badge -->
+    <div class="best-badge">
+      <span>India's Best STOCK MARKET Channel</span>
+    </div>
+
+    <!-- Features -->
+    <div class="feat">
+      All Calls With Proper Stop Loss &amp; Target<br>
+      We Provide F&amp;O Views For Study Purpose Only<br>
+      💰 Daily 5–7 Calls By Our Expert 💰
+    </div>
+
+    <!-- Credit -->
+    <div class="credit-bar">
+      🔥 Ads by &nbsp;<a href="https://t.me/+TRlJl628l-FkMWE9" target="_blank">@Nexgroww_agency</a>&nbsp; • Instant Growth 🚀
+    </div>
+  </div>
+</div>
+</body>
+</html>
